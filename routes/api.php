@@ -35,6 +35,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth','prefix' => '/auth'], f
         Route::post('patient/update/{id}','PatientController@update');
         Route::delete('patient/{id}','PatientController@destroy');
 
+        //Doctor Route
+        Route::get('doctor','DoctorController@index');
+        Route::post('doctor','DoctorController@store');
+        Route::get('doctor/search','DoctorController@search');
+        Route::get('doctor/{id}','DoctorController@edit');
+        Route::post('doctor/update/{id}','DoctorController@update');
+        Route::delete('doctor/{id}','DoctorController@destroy');
+        Route::get('/doctor/retrieve/data','DoctorController@retrieve');
+
         //Department Route
         Route::get('department','Department@index');
         Route::get('department/{id}','Department@edit');

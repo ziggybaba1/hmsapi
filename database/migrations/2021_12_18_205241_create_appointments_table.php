@@ -19,23 +19,23 @@ class CreateAppointmentsTable extends Migration
             $table->string('serialno');
             $table->text('problem');
             $table->boolean('status')->nullable()->default(false);
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->unsigned();
             $table->foreign('department_id')->references('id')
                 ->on('departments')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('doctor_id')->unsigned();
             $table->foreign('doctor_id')->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')
                 ->on('patients')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('diagnosis_id');
+            $table->unsignedBigInteger('diagnosis_id')->unsigned();
             $table->foreign('diagnosis_id')->references('id')
                 ->on('diagnosis')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')
                     ->on('users')
                     ->onDelete('cascade');

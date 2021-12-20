@@ -19,11 +19,11 @@ class CreateDiagnosisTable extends Migration
             $table->text('problem');
             $table->text('specialisation')->nullable();
             $table->boolean('status')->default(false);
-            $table->unsignedBigInteger('patients_id');
+            $table->unsignedBigInteger('patients_id')->unsigned();
             $table->foreign('patients_id')->references('id')
                 ->on('patients')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')
                         ->on('users')
                         ->onDelete('cascade');
