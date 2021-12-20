@@ -87,8 +87,10 @@ class Diagnosis extends Controller
             ->select('users.id', 'users.name', 'patients.*','diagnosis.*')
             ->join('patients', 'patients.id', '=', 'diagnosis.patients_id')
             ->join('users', 'users.id', '=', 'diagnosis.created_by')
-            ->where('uuid',$request->idno)
-            ->first();
+            ->orWhere('uuid','LIKE', '%'.$request->idno.'%')
+		    ->orWhere('firstname','LIKE', '%'.$request->idno.'%')
+		    ->orWhere('lastname','LIKE', '%'.$request->idno.'%')
+            ->paginate(Setting::paginate);
            
             return $this->successResponse(200,'success',$data);
     }

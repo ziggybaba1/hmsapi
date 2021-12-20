@@ -100,9 +100,11 @@ class Appointment extends Controller
             ->join('patients', 'patients.id', '=', 'appointments.patient_id')
             ->join('users', 'users.id', '=', 'appointments.doctor_id')
             ->join('departments', 'departments.id', '=', 'appointments.department_id')
-            ->orWhere('uuid',$request->idno)
-            ->orWhere('name',$request->doctor)
-            ->get();
+            ->orWhere('uuid','LIKE', '%'.$request->idno.'%')
+		    ->orWhere('firstname','LIKE', '%'.$request->idno.'%')
+		    ->orWhere('lastname','LIKE', '%'.$request->idno.'%')
+            ->orWhere('name','LIKE', '%'.$request->idno.'%')
+            ->paginate(Setting::paginate);
            
             return $this->successResponse(200,'success',$data);
     }
